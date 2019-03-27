@@ -1,8 +1,10 @@
 ---
-title: extend
+title: js继承
 date: 2019-03-26 22:16:41
 tags: [继承,原型]
 ---
+> es5实现js继承的几种方式
+<!-- more -->
 
 # js继承
 
@@ -16,7 +18,7 @@ Person.prototype.say = function (word){
     console.log(word)
 } 
 ```
-## 1. 原型链继承
+## 原型链继承
 ```js
 //子类
 function Man(){
@@ -31,15 +33,15 @@ console.log(man.sex) //male
 // man 的原型链上 找到 Person.prototype
 console.log(man instanceof Person) //true
 ```
-#### 特点
+特点
 1. 实例可继承的属性有：实例的构造函数的属性，父类构造函数属性，父类原型的属性。（新实例不会继承父类实例的属性！）
-#### 缺点
+缺点
 1. 新实例无法向父类构造函数传参
 2. 继承单一
 3. 所有新实例都会共享父类实例的属性。（原型上的属性是共享的，一个实例修改了原型属性，另一个实例的原型属性也会被修改！）
 
 
-## 2. 组合继承（组合原型链继承和借用构造函数复制父类构造函数属性）（常用）
+## 组合继承（组合原型链继承和借用构造函数复制父类构造函数属性）（常用）
 ```js
 function Man(name){
     //复制父类构造函数的属性 
@@ -54,13 +56,13 @@ console.log(man.name) //jack
 console.log(man.sex) //male
 console.log(man instanceof Person) //true
 ```
-#### 特点
+特点
 1. 可以继承父类原型上的属性，可以传参，可复用
 2. 每个新实例引入的构造函数属性是私有的
-#### 缺点
+缺点
 1. 调用了两次父类构造函数（耗内存），子类的构造函数会代替原型上的那个父类构造函数
 
-## 3. 寄生组合式继承
+## 寄生组合式继承
 ```js
 // 子类构造函数 复制 父类构造函数 的属性
 function Man(name){

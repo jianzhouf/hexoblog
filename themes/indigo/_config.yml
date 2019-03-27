@@ -53,7 +53,7 @@ excerpt_render: false
 excerpt_length: 200
 excerpt_link: 阅读全文
 mathjax: false
-archive_yearly: true
+archive_yearly: false
 
 # 是否显示文章最后更新时间
 show_last_updated: true
@@ -160,7 +160,7 @@ about: 用户页面中作者相关的描述性文字，如不需要设为 false
 # 动态定义title
 title_change:
   normal: (つェ⊂)咦!又好了!
-  leave: 别离开宝宝！
+  leave: 博客！
 
 # 设置为 true 发布后将使用 unpkg cdn 最新的主题样式
 # 如果想让你的自定义样式生效，把此项设为 false
