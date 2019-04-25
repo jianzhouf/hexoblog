@@ -1,4 +1,5 @@
 ---
-layout: tags
-comments: false
+title: tags
+type: "tags"
+layout: "tags"
 ---

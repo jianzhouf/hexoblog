@@ -1,12 +1,13 @@
 ---
 title: Promise 异步应用
 date: 2019-03-26 22:11:41
-tags: [ES6,Promise]
+tags: 
+   - ES6
+   - Promise
 ---
 
 
 # Promise 异步应用
-<!-- more -->
 ## Promise 例子
 Promise 对象用于一个异步操作的最终完成（或失败）及其结果值的表示。
 
@@ -34,6 +35,8 @@ myPromise(1, 500, true).then(() => {
     console.log(err);
 })
 ```
+<!-- more -->
+
 ## Promise原型
 
 ### 方法

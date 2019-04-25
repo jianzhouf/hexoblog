@@ -4,10 +4,6 @@ date: 2019-04-11 16:19:22
 tags: 
 
 ---
-> 初探redux，主要记录简单的redux使用方法，理解action、reducer、store的关系；react结合redux，异步简单实例
-
-<!-- more -->
-
 
 # 关于redux
 
@@ -19,6 +15,7 @@ tags:
 3. 使用纯函数来执行修改 
 >为了描述 action 如何改变 state tree ，你需要编写 reducers。
 
+<!-- more -->
 
 
 ## 简单的redux 实例

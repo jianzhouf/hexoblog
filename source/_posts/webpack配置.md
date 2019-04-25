@@ -4,13 +4,13 @@ date: 2019-03-27 13:17:46
 tags:
 ---
 记录webpack 配置过程
-<!-- more -->
 
 # webpack 参数配置
 ## 入口 entry
 
 ## loader 
 >loader 用于对模块的源代码进行转换。类似于其他构建工具中任务(task)
+<!-- more -->
 
 jsx 语法
 `@babel/core` 
