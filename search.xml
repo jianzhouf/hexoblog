@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[移动端遮罩层问题]]></title>
     <url>%2Fhexoblog%2F2019%2F05%2F21%2Fmask%2F</url>
-    <content type="text"><![CDATA[移动端 ios safari 方法1body加上overflow:hidden.PC可以实现问题：在移动端 会有滚动穿透问题定义：移动端弹出fixed弹窗的话，在弹窗上滑动会导致下层的页面跟着滚动，这个叫 “滚动穿透” 方法2body加上 position:fixed解决了滚动穿透问题新的问题：滚动位置丢失！页面会回到顶部！修复方法： 123456789101112131415//以下vue 的代码实现 通过 遮罩层的显示隐藏 切换body 的样式 watch: &#123; visible: function(val) &#123; if (val) &#123; this.top = document.body.scrollTop || document.documentElement.scrollTop; document.body.style.position = "fixed"; document.body.style.top = -this.top + "px"; &#125; else &#123; document.body.style.position = ""; document.documentElement.scrollTop = document.body.scrollTop = this.top; &#125; &#125; &#125;// 注意： 由于fixed 的改变了body的样式 ， 请加上 body&#123;width: 100%&#125;]]></content>
+    <content type="text"><![CDATA[移动端遮罩层问题移动端 ios safari 方法1body加上overflow:hidden.PC可以实现问题：在移动端 会有滚动穿透问题定义：移动端弹出fixed弹窗的话，在弹窗上滑动会导致下层的页面跟着滚动，这个叫 “滚动穿透” 方法2body加上 position:fixed解决了滚动穿透问题新的问题：滚动位置丢失！页面会回到顶部！修复方法：123456789101112131415//以下vue 的代码实现 通过 遮罩层的显示隐藏 切换body 的样式 watch: &#123; visible: function(val) &#123; if (val) &#123; this.top = document.body.scrollTop || document.documentElement.scrollTop; document.body.style.position = "fixed"; document.body.style.top = -this.top + "px"; &#125; else &#123; document.body.style.position = ""; document.documentElement.scrollTop = document.body.scrollTop = this.top; &#125; &#125; &#125;// 注意： 由于fixed 的改变了body的样式 ， 请加上 body&#123;width: 100%&#125;]]></content>
   </entry>
   <entry>
     <title><![CDATA[优秀的三方库收集]]></title>
