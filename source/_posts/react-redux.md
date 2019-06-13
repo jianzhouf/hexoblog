@@ -18,6 +18,8 @@ tags:
 <!-- more -->
 
 
+
+
 ## 简单的redux 实例
 
 ```js
@@ -99,4 +101,82 @@ return {
 
 ```
 # createStore 源码解析
-# dispatch 源码解析
+
+`createStore`
+```js
+// reducer: 响应 actions 返回新的 state
+// preloadedState: 初始state
+// enhancer: 利用 applyMiddleware 对store 增强
+createStore(reducer, preloadedState, enhancer)
+
+// createStore 执行时 初始化一次state
+dispatch({ type: ActionTypes.INIT })
+//`createStore的返回值`
+return {
+    dispatch,
+    /**
+     * 触发一个action，
+     * 执行 currentState = currentReducer(currentState, action)，更新state
+     * 执行所有的listeners
+     */
+    subscribe, // 添加监听，状态变化时执行所有的listeners
+    getState, // return currentState
+    replaceReducer, // 替换成新的reducer
+    [$$observable]: observable // 定义一个观察者对象，须有next 接口方法
+}
+```
+# combineReducers 源码解析
+
+```js
+export default function combineReducers(reducers) {
+  const reducerKeys = Object.keys(reducers) // 对所有的reducers key 进行收集
+  ...
+
+  return function combination(state = {}, action) {
+
+
+    let hasChanged = false
+    const nextState = {}
+
+    for (let i = 0; i < finalReducerKeys.length; i++) {
+      const key = finalReducerKeys[i]
+      const reducer = finalReducers[key]
+      const previousStateForKey = state[key]
+
+      // reducer的key 指向的 单独的state
+      const nextStateForKey = reducer(previousStateForKey, action)
+
+      // 以reducer的key 存储 每一个reducer 维护的state
+      nextState[key] = nextStateForKey 
+
+      hasChanged = hasChanged || nextStateForKey !== previousStateForKey
+    }
+    return hasChanged ? nextState : state
+  }
+}
+```
+
+# applyMiddleware 源码解析
+中间件 就是将 store的dispatch进行增强,使得可以接受一个函数，promise对象等，例如 `redux-thunk` 、`redux-promise`
+```js
+export default function applyMiddleware(...middlewares) {
+  return createStore => (...args) => {
+    const store = createStore(...args)
+
+    //提供了 store 的getState 和 dispath 的方法
+    const middlewareAPI = {
+      getState: store.getState,
+      dispatch: (...args) => dispatch(...args)
+    }
+
+    const chain = middlewares.map(middleware => middleware(middlewareAPI))
+    // 提供一个增强的dispatch方法
+    dispatch = compose(...chain)(store.dispatch)
+
+    return {
+      ...store,
+      dispatch
+    }
+  }
+
+```
