@@ -100,7 +100,9 @@ return {
 }))(App);
 
 ```
-# createStore 源码解析
+# redux 源码解析
+
+## createStore 源码解析
 
 `createStore`
 ```js
@@ -125,7 +127,7 @@ return {
     [$$observable]: observable // 定义一个观察者对象，须有next 接口方法
 }
 ```
-# combineReducers 源码解析
+## combineReducers 源码解析
 
 ```js
 export default function combineReducers(reducers) {
@@ -156,7 +158,7 @@ export default function combineReducers(reducers) {
 }
 ```
 
-# applyMiddleware 源码解析
+## applyMiddleware 源码解析
 中间件 就是将 store的dispatch进行增强,使得可以接受一个函数，promise对象等，例如 `redux-thunk` 、`redux-promise`
 ```js
 export default function applyMiddleware(...middlewares) {
@@ -180,3 +182,84 @@ export default function applyMiddleware(...middlewares) {
   }
 
 ```
+
+
+# react-redux 源码简单分析
+
+## Provider
+```jsx
+class Provider extends Component {
+  constructor(props) {
+    super(props)
+    ...
+
+    this.state = {
+      store, // redux 创建的 store 
+      // provider 提供的一个 可添加订阅的 方法
+      // subscription 本身对 store.subscribe 监听 
+      subscription 
+    }
+  }
+  render(){
+    return <Context.Provider value={this.state}>
+      {this.props.children}
+    </Context.Provider>
+  }
+}
+
+```
+
+## Connect 
+```jsx
+export default function connectAdvanced(selectorFactory, {...}){
+
+  ...
+
+  const checkForUpdates = ()=>{
+    ...
+  // If the child props haven't changed, nothing to do here - cascade the subscription update
+    // props 不变 
+    if (newChildProps === lastChildProps.current) {
+      if (!renderIsScheduled.current) {
+        notifyNestedSubs()
+      }
+    } else {
+      // Save references to the new child props.  Note that we track the "child props from store update"
+      // as a ref instead of a useState/useReducer because we need a way to determine if that value has
+      // been processed.  If this went into useState/useReducer, we couldn't clear out the value without
+      // forcing another re-render, which we don't want.
+      lastChildProps.current = newChildProps
+      childPropsFromStoreUpdate.current = newChildProps
+      renderIsScheduled.current = true
+
+      // If the child props _did_ change (or we caught an error), this wrapper component needs to re-render
+      // 如果 props 改变 组件重新render
+      forceComponentUpdateDispatch({
+        type: 'STORE_UPDATED',
+        payload: {
+          latestStoreState,
+          error
+        }
+      })
+    }
+    ...
+  }
+  // Actually subscribe to the nearest connected ancestor (or store)
+  // didStoreComeFromProps ? null : contextValue.subscription context 提供的 subscription
+  // 
+  subscription.onStateChange = checkForUpdates
+  // 添加订阅
+  subscription.trySubscribe()
+
+  // Pull data from the store after first render in case the store has
+  // changed since we began.
+  // 
+  checkForUpdates()
+
+
+  
+}
+
+
+```
+
