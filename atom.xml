@@ -6,7 +6,7 @@
   <link href="/hexoblog/atom.xml" rel="self"/>
   
   <link href="https://jianzhouf.github.io/hexoblog/"/>
-  <updated>2019-06-27T07:39:03.000Z</updated>
+  <updated>2019-07-26T06:42:46.000Z</updated>
   <id>https://jianzhouf.github.io/hexoblog/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>node学习</title>
+    <link href="https://jianzhouf.github.io/hexoblog/2019/07/26/node/"/>
+    <id>https://jianzhouf.github.io/hexoblog/2019/07/26/node/</id>
+    <published>2019-07-26T06:40:55.000Z</published>
+    <updated>2019-07-26T06:42:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="静态文件服务器"><a href="#静态文件服务器" class="headerlink" title="静态文件服务器"></a>静态文件服务器</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>)</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>)</span><br><span class="line"><span class="comment">//读取文件的函数</span></span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function">(<span class="params">req, response</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> filePath = path.resolve(__dirname + <span class="string">"/index.html"</span>);</span><br><span class="line">    fs.stat(filePath, (err, stats) =&gt; &#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">readFile</span>(<span class="params">filePath, contentType = <span class="string">"text/html"</span></span>) </span>&#123;</span><br><span class="line">            response.writeHead(<span class="number">200</span>, &#123; <span class="string">"content-type"</span>: contentType &#125;);</span><br><span class="line">            <span class="comment">//建立流对象，读文件</span></span><br><span class="line">            <span class="keyword">var</span> stream = fs.createReadStream(filePath);</span><br><span class="line">            <span class="comment">//错误处理</span></span><br><span class="line">            stream.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                response.writeHead(<span class="number">500</span>, &#123; <span class="string">"content-type"</span>: contentType &#125;);</span><br><span class="line">                response.end(<span class="string">"&lt;h1&gt;500 Server Error&lt;/h1&gt;"</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="comment">//读取文件 管道概念 stream流向响应</span></span><br><span class="line">            stream.pipe(response);</span><br><span class="line">            stream.on(<span class="string">"end"</span>, () =&gt; &#123;</span><br><span class="line">                <span class="comment">// response.end()</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        readFile(filePath)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&#125;).listen(<span class="number">8080</span>)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;静态文件服务器&quot;&gt;&lt;a href=&quot;#静态文件服务器&quot; class=&quot;headerlink&quot; title=&quot;静态文件服务器&quot;&gt;&lt;/a&gt;静态文件服务器&lt;/h1&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gu
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>reacthook</title>

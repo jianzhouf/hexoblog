@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[node学习]]></title>
+    <url>%2Fhexoblog%2F2019%2F07%2F26%2Fnode%2F</url>
+    <content type="text"><![CDATA[静态文件服务器123456789101112131415161718192021222324252627282930const http = require("http")const fs = require("fs")const path = require("path")//读取文件的函数http.createServer((req, response) =&gt; &#123; var filePath = path.resolve(__dirname + "/index.html"); fs.stat(filePath, (err, stats) =&gt; &#123; function readFile(filePath, contentType = "text/html") &#123; response.writeHead(200, &#123; "content-type": contentType &#125;); //建立流对象，读文件 var stream = fs.createReadStream(filePath); //错误处理 stream.on('error', function () &#123; response.writeHead(500, &#123; "content-type": contentType &#125;); response.end("&lt;h1&gt;500 Server Error&lt;/h1&gt;"); &#125;); //读取文件 管道概念 stream流向响应 stream.pipe(response); stream.on("end", () =&gt; &#123; // response.end() &#125;) &#125; readFile(filePath) &#125;)&#125;).listen(8080)]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[reacthook]]></title>
     <url>%2Fhexoblog%2F2019%2F06%2F27%2Freacthook%2F</url>
     <content type="text"><![CDATA[react Hooks 初探useState1const [state, setState] = useState(initialState); state的初始值可通过第一个参数initialState赋值数组的解构得到state和更新函数setState useEffect12345678910111213// didUpdate更新回调，deps 监听变量数组useEffect(didUpdate, deps)useEffect(()=&gt;&#123; console.log("componentDidMount"); return ()=&gt;&#123; console.log("componentWillUnmount"); &#125;&#125;)useEffect(()=&gt;&#123; console.log("componentDidUpdate");&#125;,[state]) useMemo/useCallback用作性能优化 12]]></content>
