@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[reacthook]]></title>
+    <url>%2Fhexoblog%2F2019%2F06%2F27%2Freacthook%2F</url>
+    <content type="text"><![CDATA[react Hooks 初探useState1const [state, setState] = useState(initialState); state的初始值可通过第一个参数initialState赋值数组的解构得到state和更新函数setState useEffect12345678910111213// didUpdate更新回调，deps 监听变量数组useEffect(didUpdate, deps)useEffect(()=&gt;&#123; console.log("componentDidMount"); return ()=&gt;&#123; console.log("componentWillUnmount"); &#125;&#125;)useEffect(()=&gt;&#123; console.log("componentDidUpdate");&#125;,[state]) useMemo/useCallback用作性能优化 12]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[ios兼容问题]]></title>
     <url>%2Fhexoblog%2F2019%2F05%2F29%2Fiosfix%2F</url>
     <content type="text"><![CDATA[ios 混合webview 兼容问题ios键盘收起导致页面上移产生原因： 为了用户体验，input聚焦时，使得body的scrollTop加上了键盘的高度，导致页面上移； 12345678910111213if (device.ios()) &#123; let timer window.addEventListener("focusin", (e) =&gt; &#123; if (timer) &#123; clearTimeout(timer) &#125; &#125;) window.addEventListener("focusout", (e) =&gt; &#123; timer = setTimeout(() =&gt; &#123; e.target.scrollIntoView() &#125;, 200) &#125;)&#125;]]></content>

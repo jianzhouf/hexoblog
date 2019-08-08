@@ -6,7 +6,7 @@
   <link href="/hexoblog/atom.xml" rel="self"/>
   
   <link href="https://jianzhouf.github.io/hexoblog/"/>
-  <updated>2019-05-29T09:22:13.000Z</updated>
+  <updated>2019-06-27T07:39:03.000Z</updated>
   <id>https://jianzhouf.github.io/hexoblog/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>reacthook</title>
+    <link href="https://jianzhouf.github.io/hexoblog/2019/06/27/reacthook/"/>
+    <id>https://jianzhouf.github.io/hexoblog/2019/06/27/reacthook/</id>
+    <published>2019-06-27T07:28:21.000Z</published>
+    <updated>2019-06-27T07:39:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="react-Hooks-初探"><a href="#react-Hooks-初探" class="headerlink" title="react Hooks 初探"></a>react Hooks 初探</h1><h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [state, setState] = useState(initialState);</span><br></pre></td></tr></table></figure><p><code>state</code>的初始值可通过第一个参数<code>initialState</code>赋值<br>数组的解构得到<code>state</code>和更新函数<code>setState</code></p><h2 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// didUpdate更新回调，deps 监听变量数组</span></span><br><span class="line">useEffect(didUpdate, deps)</span><br><span class="line"></span><br><span class="line">useEffect(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"componentDidMount"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"componentWillUnmount"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">useEffect(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"componentDidUpdate"</span>);</span><br><span class="line">&#125;,[state])</span><br></pre></td></tr></table></figure><h2 id="useMemo-useCallback"><a href="#useMemo-useCallback" class="headerlink" title="useMemo/useCallback"></a>useMemo/useCallback</h2><p>用作性能优化</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;react-Hooks-初探&quot;&gt;&lt;a href=&quot;#react-Hooks-初探&quot; class=&quot;headerlink&quot; title=&quot;react Hooks 初探&quot;&gt;&lt;/a&gt;react Hooks 初探&lt;/h1&gt;&lt;h2 id=&quot;useState&quot;&gt;&lt;a href
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>ios兼容问题</title>
